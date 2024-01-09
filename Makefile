@@ -44,22 +44,29 @@ SOURCES = get_next_line.c\
 		  ft_lstiter_bonus.c\
 		  ft_lstmap_bonus.c
 OBJECTS = $(SOURCES:.c=.o)
-FLAGS = -Wall -Wextra -Werror
+PDIR = ft_printf/
+PLIB = libftprintf.a
 CC = clang
+FLAGS = -Wall -Wextra -Werror
+RM = rm -rf
 
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
+	make -C $(PDIR)
+	cp $(PDIR)$(PLIB) $(NAME)
 	ar rcs $(NAME) $(OBJECTS)
 
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
-	rm -rf $(OBJECTS)
+	make clean -C $(PDIR)
+	$(RM) $(OBJECTS)
 
 fclean : clean
-	rm -rf $(NAME)
+	$(RM) $(NAME)
+	$(RM) $(PDIR)$(PLIB)
 
 re : fclean all
 
