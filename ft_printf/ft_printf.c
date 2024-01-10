@@ -6,23 +6,23 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:21:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2023/11/14 19:01:51 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:00:51 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_argument(va_list *list, const char **arg, int *count)
+static int	print_argument(va_list *list, const char **arg, int *count)
 {
 	(*arg)++;
 	if (**arg == 'i' || **arg == 'd' || **arg == 'c')
-		print_integer(list, arg, count);
+		print_integer_ptf(list, arg, count);
 	else if (**arg == 'u' || **arg == 'x' || **arg == 'X')
-		print_unsigned_int(list, arg, count);
+		print_u_int_ptf(list, arg, count);
 	else if (**arg == 'p')
-		print_pointer(list, count);
+		print_pointer_ptf(list, count);
 	else if (**arg == 's')
-		print_string(list, count);
+		print_string_ptf(list, count);
 	else if (**arg == '%')
 	{
 		write(1, "%", 1);

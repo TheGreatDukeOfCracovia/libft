@@ -6,13 +6,13 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:05:18 by tde-la-r          #+#    #+#             */
-/*   Updated: 2023/11/13 19:05:54 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:03:06 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int n, unsigned long u, char *base, int *count)
+void	ft_putnbr_ptf(int n, unsigned long u, char *base, int *count)
 {
 	unsigned long	number;
 
@@ -33,12 +33,12 @@ void	ft_putnbr(int n, unsigned long u, char *base, int *count)
 		(*count)++;
 	}
 	if (number > ft_strlen(base) - 1)
-		ft_putnbr(0, number / ft_strlen(base), base, count);
+		ft_putnbr_ptf(0, number / ft_strlen(base), base, count);
 	write(1, base + (number % ft_strlen(base)), 1);
 	(*count)++;
 }
 
-void	print_string(va_list *list, int *count)
+void	print_string_ptf(va_list *list, int *count)
 {
 	char	*str;
 
@@ -59,7 +59,7 @@ void	print_string(va_list *list, int *count)
 	}
 }
 
-void	print_integer(va_list *list, const char **to_print, int *count)
+void	print_integer_ptf(va_list *list, const char **to_print, int *count)
 {
 	int	integer;
 
@@ -70,23 +70,23 @@ void	print_integer(va_list *list, const char **to_print, int *count)
 		(*count)++;
 	}
 	if (**to_print == 'd' || **to_print == 'i')
-		ft_putnbr(integer, 0, "0123456789", count);
+		ft_putnbr_ptf(integer, 0, "0123456789", count);
 }
 
-void	print_unsigned_int(va_list *list, const char **to_print, int *count)
+void	print_u_int_ptf(va_list *list, const char **to_print, int *count)
 {
 	unsigned int	u_integer;
 
 	u_integer = va_arg(*list, unsigned int);
 	if (**to_print == 'x')
-		ft_putnbr(0, u_integer, "0123456789abcdef", count);
+		ft_putnbr_ptf(0, u_integer, "0123456789abcdef", count);
 	if (**to_print == 'X')
-		ft_putnbr(0, u_integer, "0123456789ABCDEF", count);
+		ft_putnbr_ptf(0, u_integer, "0123456789ABCDEF", count);
 	if (**to_print == 'u')
-		ft_putnbr(0, u_integer, "0123456789", count);
+		ft_putnbr_ptf(0, u_integer, "0123456789", count);
 }
 
-void	print_pointer(va_list *list, int *count)
+void	print_pointer_ptf(va_list *list, int *count)
 {
 	unsigned long	p;
 
@@ -95,7 +95,7 @@ void	print_pointer(va_list *list, int *count)
 	{
 		write (1, "0x", 2);
 		*count += 2;
-		ft_putnbr(0, p, "0123456789abcdef", count);
+		ft_putnbr_ptf(0, p, "0123456789abcdef", count);
 	}
 	else
 	{
