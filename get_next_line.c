@@ -6,11 +6,11 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:07:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/01/11 13:17:35 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:22:55 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"	
+#include "libft.h"	
 
 static char	*read_line(int fd, char *buffer, char *save)
 {
