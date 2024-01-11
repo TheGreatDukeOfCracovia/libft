@@ -6,19 +6,18 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:07:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/01/09 15:02:23 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:17:35 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"	
+#include "get_next_line.h"	
 
 static char	*read_line(int fd, char *buffer, char *save)
 {
 	int		nb_char;
 	char	*tmp;
 
-	nb_char = 1;
-	while (nb_char && !ft_strchr(buffer, '\n'))
+	while (!ft_strchr(buffer, '\n'))
 	{
 		nb_char = read(fd, buffer, BUFFER_SIZE);
 		if (nb_char == -1)
@@ -28,8 +27,6 @@ static char	*read_line(int fd, char *buffer, char *save)
 		buffer[nb_char] = 0;
 		tmp = save;
 		save = ft_strjoin(tmp, buffer);
-		if (!save)
-			return (NULL);
 		if (tmp)
 			free(tmp);
 		tmp = NULL;
@@ -73,7 +70,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = read_line(fd, buffer, save[fd]);
 	free(buffer);
-	buffer = NULL;
 	if (!line)
 		return (NULL);
 	if (!*line)
