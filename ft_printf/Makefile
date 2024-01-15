@@ -2,7 +2,7 @@ NAME = libftprintf.a
 SOURCES = ft_printf.c arguments.c
 OBJECTS = $(SOURCES:.c=.o)
 FLAGS = -Wall -Wextra -Werror
-CC = cc
+CC = clang
 
 all : $(NAME)
 
