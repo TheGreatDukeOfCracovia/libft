@@ -6,7 +6,7 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:23:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/01/08 20:05:45 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:05:52 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
@@ -48,11 +49,15 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 int		ft_atoi(const char *nptr);
+int		ft_atoi_radix(const char *nptr, int base);
+bool	ft_isbase(int c, int base_len);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_islower(int c);
+int		ft_isupper(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_tolower(int c);
