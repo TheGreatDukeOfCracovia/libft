@@ -1,5 +1,7 @@
 NAME = libft.a
 SOURCES = get_next_line.c\
+		  ft_printf.c\
+		  arguments.c\
 		  ft_atoi.c\
 		  ft_atoi_radix.c\
 		  ft_bzero.c\
@@ -48,8 +50,6 @@ SOURCES = get_next_line.c\
 		  ft_lstiter_bonus.c\
 		  ft_lstmap_bonus.c
 OBJECTS = $(SOURCES:.c=.o)
-PDIR = ft_printf/
-PLIB = libftprintf.a
 CC = clang
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
@@ -57,20 +57,16 @@ RM = rm -rf
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
-	make -C $(PDIR)
-	cp $(PDIR)$(PLIB) $(NAME)
 	ar rcs $(NAME) $(OBJECTS)
 
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
-	make clean -C $(PDIR)
 	$(RM) $(OBJECTS)
 
 fclean : clean
 	$(RM) $(NAME)
-	$(RM) $(PDIR)$(PLIB)
 
 re : fclean all
 
