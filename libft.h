@@ -26,6 +26,7 @@ typedef struct s_list
 }					t_list;
 
 char	*get_next_line(int fd);
+int		ft_printf(const char *to_print, ...);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
