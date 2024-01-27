@@ -52,7 +52,7 @@ SOURCES = get_next_line.c\
 OBJECTS = $(SOURCES:.c=.o)
 CC = clang
 FLAGS = -Wall -Wextra -Werror
-RM = rm -rf
+RM = rm -f
 
 all : $(NAME)
 
