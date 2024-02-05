@@ -50,6 +50,7 @@ SOURCES = get_next_line.c\
 		  ft_lstiter_bonus.c\
 		  ft_lstmap_bonus.c
 OBJECTS = $(SOURCES:.c=.o)
+INCLUDE = -Iinclude/
 CC = clang
 FLAGS = -Wall -Wextra -Werror
 RM = rm -f
@@ -60,7 +61,7 @@ $(NAME) : $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 %.o : %.c
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean :
 	$(RM) $(OBJECTS)
