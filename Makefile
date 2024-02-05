@@ -60,7 +60,7 @@ $(NAME) : $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 %.o : %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean :
 	$(RM) $(OBJECTS)
