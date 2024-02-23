@@ -6,7 +6,7 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 23:50:42 by tde-la-r          #+#    #+#             */
-/*   Updated: 2023/11/02 11:34:59 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:22:21 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	*area2;
 	size_t			i;
 
+	if (!s1 || !s2)
+		return (0);
 	i = 0;
 	area1 = (void *)s1;
 	area2 = (void *)s2;
