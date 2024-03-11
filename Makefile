@@ -48,7 +48,9 @@ SOURCES = get_next_line.c\
 		  ft_lstdelone_bonus.c\
 		  ft_lstclear_bonus.c\
 		  ft_lstiter_bonus.c\
-		  ft_lstmap_bonus.c
+		  ft_lstmap_bonus.c\
+		  ft_lower.c\
+		  ft_superior.c
 OBJECTS = $(SOURCES:.c=.o)
 INCLUDE = -Iinclude/
 CC = clang
