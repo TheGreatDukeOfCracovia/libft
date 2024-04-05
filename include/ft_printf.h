@@ -6,7 +6,7 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:16:23 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/04/06 00:31:54 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/04/06 01:05:09 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdbool.h>
 # include <unistd.h>
 
-int		ft_printf(const char *to_print, ...);
 void	print_pointer_ptf(int fd, va_list *list, int *count);
 void	print_u_int_ptf(int fd, va_list *list, const char arg, int *count);
 void	print_integer_ptf(int fd, va_list *list, const char arg, int *count);
