@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.c                                        :+:      :+:    :+:   */
+/*   printf_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:05:18 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/01/10 18:03:06 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:13:03 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_ptf(int n, unsigned long u, char *base, int *count)
+static void	ft_putnbr_ptf(int n, unsigned long u, char *base, int *count)
 {
 	unsigned long	number;
 
@@ -59,30 +59,30 @@ void	print_string_ptf(va_list *list, int *count)
 	}
 }
 
-void	print_integer_ptf(va_list *list, const char **to_print, int *count)
+void	print_integer_ptf(va_list *list, const char to_print, int *count)
 {
 	int	integer;
 
 	integer = va_arg(*list, int);
-	if (**to_print == 'c')
+	if (to_print == 'c')
 	{
 		write(1, &integer, 1);
 		(*count)++;
 	}
-	if (**to_print == 'd' || **to_print == 'i')
+	if (to_print == 'd' || to_print == 'i')
 		ft_putnbr_ptf(integer, 0, "0123456789", count);
 }
 
-void	print_u_int_ptf(va_list *list, const char **to_print, int *count)
+void	print_u_int_ptf(va_list *list, const char to_print, int *count)
 {
 	unsigned int	u_integer;
 
 	u_integer = va_arg(*list, unsigned int);
-	if (**to_print == 'x')
+	if (to_print == 'x')
 		ft_putnbr_ptf(0, u_integer, "0123456789abcdef", count);
-	if (**to_print == 'X')
+	if (to_print == 'X')
 		ft_putnbr_ptf(0, u_integer, "0123456789ABCDEF", count);
-	if (**to_print == 'u')
+	if (to_print == 'u')
 		ft_putnbr_ptf(0, u_integer, "0123456789", count);
 }
 
