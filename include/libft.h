@@ -6,7 +6,7 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:23:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/04/06 00:48:06 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:20:34 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_list
 
 char	*get_next_line(int fd);
 int		ft_printf(const char *to_print, ...);
-int		ft_dprintf(int fd, const char *to_print, ...);
+int		ft_fprintf(int fd, const char *to_print, ...);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

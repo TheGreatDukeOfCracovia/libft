@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dprintf.c                                       :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:21:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/04/06 00:48:36 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:20:38 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	process_chars(int fd, va_list *list, const char *arg, int count)
 	return (count);
 }
 
-int	ft_dprintf(int fd, const char *to_print, ...)
+int	ft_fprintf(int fd, const char *to_print, ...)
 {
 	va_list	list;
 	int		count;

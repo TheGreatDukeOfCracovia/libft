@@ -1,7 +1,7 @@
 NAME = libft.a
 SOURCES = get_next_line.c\
 		  ft_printf.c\
-		  ft_dprintf.c\
+		  ft_fprintf.c\
 		  printf_args.c\
 		  ft_atoi.c\
 		  ft_atoi_radix.c\
