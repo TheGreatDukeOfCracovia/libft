@@ -6,7 +6,7 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:05:18 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/05/01 16:23:51 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:56:43 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_integer_ptf(int fd, va_list *list, const char arg, int *count)
 		(*count)++;
 		return ;
 	}
-	if (integer == -2147483648)
+	if (integer == INT_MIN)
 	{
 		write(fd, "-2147483648", 11);
 		*count += 11;
