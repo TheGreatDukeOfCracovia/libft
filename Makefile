@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/01 15:55:46 by tde-la-r          #+#    #+#              #
+#    Updated: 2024/05/01 16:05:50 by tde-la-r         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
-SOURCES = get_next_line.c\
+SRCS = get_next_line.c\
 		  ft_printf.c\
 		  ft_fprintf.c\
 		  printf_args.c\
@@ -52,22 +64,29 @@ SOURCES = get_next_line.c\
 		  ft_lstmap_bonus.c\
 		  ft_lower.c\
 		  ft_superior.c
-OBJECTS = $(SOURCES:.c=.o)
+
+SRCS_DIR = sources/
+OBJS_DIR = objects/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+
+INCLUDE_DIR = include/
 INCLUDE = -Iinclude/
+
 CC = clang
 FLAGS = -Wall -Wextra -Werror
-RM = rm -f
+RM = rm -rf
 
 all : $(NAME)
 
-$(NAME) : $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+$(NAME) : $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-%.o : %.c
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean :
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJS_DIR)
 
 fclean : clean
 	$(RM) $(NAME)
