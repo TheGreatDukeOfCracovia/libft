@@ -6,15 +6,17 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:23:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/04/29 15:20:34 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/05/01 19:41:31 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif

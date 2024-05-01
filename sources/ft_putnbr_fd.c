@@ -6,13 +6,13 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:33:16 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/05/01 15:47:53 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/05/01 18:15:25 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	get_number(unsigned int nbr, char to_print[10], int *i)
+static void	get_number(unsigned long nbr, char to_print[10], int *i)
 {
 	if (nbr > 9)
 		get_number(nbr / 10, to_print, i);

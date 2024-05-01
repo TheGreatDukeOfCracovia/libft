@@ -6,18 +6,21 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:05:18 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/05/01 17:56:43 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/05/01 18:49:11 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_ptf(int fd, unsigned long number, char *base, int *count)
+static void	get_number(unsigned long nbr, char *base, char *to_print, int *i)
 {
-	if (number > ft_strlen(base) - 1)
-		ft_putnbr_ptf(fd, number / ft_strlen(base), base, count);
-	write(fd, base + (number % ft_strlen(base)), 1);
-	(*count)++;
+	size_t	len;
+
+	len = ft_strlen(base);
+	if (nbr > len - 1)
+		get_number(nbr / len, base, to_print, i);
+	to_print[*i] = base[nbr % len];
+	(*i)++;
 }
 
 void	print_string_ptf(int fd, va_list *list, int *count)
@@ -29,69 +32,70 @@ void	print_string_ptf(int fd, va_list *list, int *count)
 	if (str)
 	{
 		len = ft_strlen(str);
-		write(fd, str, len);
-		*count += len;
+		*count += write(fd, str, len);
 	}
 	else
-	{
-		write(fd, "(null)", 6);
-		*count += 6;
-	}
+		*count += write(fd, "(null)", 6);
 }
 
 void	print_integer_ptf(int fd, va_list *list, const char arg, int *count)
 {
-	int	integer;
+	int		integer;
+	int		i;
+	char	to_print[10];
 
 	integer = va_arg(*list, int);
 	if (arg == 'c')
 	{
-		write(fd, &integer, 1);
-		(*count)++;
+		*count += write(fd, &integer, 1);
 		return ;
 	}
 	if (integer == INT_MIN)
 	{
-		write(fd, "-2147483648", 11);
-		*count += 11;
+		*count += write(fd, "-2147483648", 11);
 		return ;
 	}
 	if (integer < 0)
 	{
 		integer = -integer;
-		write (fd, "-", 1);
-		(*count)++;
+		*count += write (fd, "-", 1);
 	}
-	ft_putnbr_ptf(fd, integer, "0123456789", count);
+	i = 0;
+	get_number(integer, "0123456789", to_print, &i);
+	*count += write(fd, to_print, i);
 }
 
-void	print_u_int_ptf(int fd, va_list *list, const char to_print, int *count)
+void	print_u_int_ptf(int fd, va_list *list, const char arg, int *count)
 {
 	unsigned int	u_integer;
+	int				i;
+	char			to_print[16];
 
 	u_integer = va_arg(*list, unsigned int);
-	if (to_print == 'x')
-		ft_putnbr_ptf(fd, u_integer, "0123456789abcdef", count);
-	if (to_print == 'X')
-		ft_putnbr_ptf(fd, u_integer, "0123456789ABCDEF", count);
-	if (to_print == 'u')
-		ft_putnbr_ptf(fd, u_integer, "0123456789", count);
+	i = 0;
+	if (arg == 'x')
+		get_number(u_integer, "0123456789abcdef", to_print, &i);
+	if (arg == 'X')
+		get_number(u_integer, "0123456789ABCDEF", to_print, &i);
+	if (arg == 'u')
+		get_number(u_integer, "0123456789", to_print, &i);
+	*count += write(fd, to_print, i);
 }
 
 void	print_pointer_ptf(int fd, va_list *list, int *count)
 {
-	unsigned long	p;
+	unsigned long	ptr;
+	int				i;
+	char			to_print[16];
 
-	p = va_arg(*list, unsigned long);
-	if (p)
+	ptr = va_arg(*list, unsigned long);
+	if (ptr)
 	{
-		write (fd, "0x", 2);
-		*count += 2;
-		ft_putnbr_ptf(fd, p, "0123456789abcdef", count);
+		*count += write (fd, "0x", 2);
+		i = 0;
+		get_number(ptr, "0123456789abcdef", to_print, &i);
+		*count += write(fd, to_print, i);
 	}
 	else
-	{
-		write(fd, "(nil)", 5);
-		*count += 5;
-	}
+		*count += write(fd, "(nil)", 5);
 }

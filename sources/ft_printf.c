@@ -6,7 +6,7 @@
 /*   By: tde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:21:36 by tde-la-r          #+#    #+#             */
-/*   Updated: 2024/05/01 17:57:16 by tde-la-r         ###   ########.fr       */
+/*   Updated: 2024/05/01 19:37:44 by tde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@ static bool	print_argument(int fd, va_list *list, const char **arg, int *count)
 	else if (**arg == 's')
 		print_string_ptf(fd, list, count);
 	else if (**arg == '%')
-	{
-		write(fd, "%", 1);
-		(*count)++;
-	}
+		*count += write(fd, "%", 1);
 	else if (**arg)
 	{
-		write(fd, "%", 1);
-		write(fd, *arg, 1);
-		*count += 2;
+		*count += write(fd, "%", 1);
+		*count += write(fd, *arg, 1);
 	}
 	else
 		return (false);
