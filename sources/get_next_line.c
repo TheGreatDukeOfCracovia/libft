@@ -65,9 +65,9 @@ char	*get_next_line(int fd)
 	if (fd > 1024 || fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	*buffer = 0;
 	if (!buffer)
 		return (NULL);
+	*buffer = 0;
 	line = read_line(fd, buffer, save[fd]);
 	free(buffer);
 	if (!line)
